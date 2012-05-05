@@ -10,7 +10,7 @@ app.listen(port, ()->
   console.log("Listening on " + port)
 )
 
-app.get("/",(req,res)->
-	 console.log "/index"
+app.get( "/", (req,res)->
+	console.log "/index"
 	res.render "index" 
 )
