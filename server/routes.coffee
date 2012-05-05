@@ -1,4 +1,5 @@
 express = require 'express'
+fs = require 'fs'
 
 app = express.createServer express.logger() 
 app.set 'view engine', 'jade'
@@ -13,4 +14,16 @@ app.listen(port, ()->
 app.get( "/", (req,res)->
 	console.log "/index"
 	res.render "index" 
+)
+
+app.get("/movies", (req,res)->
+	fs.readFile( "movieList.json", "utf-8",(error, data)->
+		if(err) {
+			console.error("Could not open file: %s", err);
+    		process.exit(1);
+  		}
+  		res.send data.toString()
+
+	)
+		
 )
