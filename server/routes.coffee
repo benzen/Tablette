@@ -1,6 +1,5 @@
 express = require 'express'
 fs = require 'fs'
-_ = require "underscore"
 
 app = express.createServer express.logger() 
 app.set 'view engine', 'jade'
