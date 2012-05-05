@@ -22,6 +22,6 @@ app.get("/movies", (req,res)->
 			console.error "Could not open file: %s", error
 			process.exit 1 
 		movieMap = JSON.parse data.toString("utf-8")
-		res.render "movies",{locals: movieList:{movieMap}}
+		res.render "movies",{locals: { movieList:movieMap } }
 	)
 )
