@@ -18,9 +18,9 @@ app.get( "/", (req,res)->
 
 app.get("/movies", (req,res)->
 	fs.readFile( "movieList.json", "utf-8",(error, data)->
-		if(err) {
-			console.error("Could not open file: %s", err);
-    		process.exit(1);
+		if(error) {
+			console.error("Could not open file: %s", error)
+    		process.exit(1)
   		}
   		res.send data.toString()
 
