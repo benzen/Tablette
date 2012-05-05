@@ -21,6 +21,6 @@ app.get("/movies", (req,res)->
 		if error
 			console.error "Could not open file: %s", error
 			process.exit 1 
- 		res.send data.toString("utf-8")
+		res.send data.toString("utf-8")
 	)
 )
