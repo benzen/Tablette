@@ -17,10 +17,10 @@ app.get( "/", (req,res)->
 )
 
 app.get("/movies", (req,res)->
-	fs.readFile( "movieList.json", "utf-8",(error, data)->
-		if(error)
-			console.error("Could not open file: %s", error)
-    		process.exit(1)
+	fs.readFile( "movieList.json", "utf-8",(error, data) ->
+		if error
+			console.error "Could not open file: %s", error
+    		process.exit 1 
   		res.send data.toString()
 
 	)
