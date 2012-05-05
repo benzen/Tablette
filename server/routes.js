@@ -1,4 +1,4 @@
-require "express"
+express = require('express')
 
 app = express.createServer express.logger()
 app.set 'view engine', 'jade'
