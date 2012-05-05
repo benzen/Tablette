@@ -1,5 +1,6 @@
 express = require 'express'
 fs = require 'fs'
+_ = require "underscore"
 
 app = express.createServer express.logger() 
 app.set 'view engine', 'jade'
@@ -21,6 +22,7 @@ app.get("/movies", (req,res)->
 		if error
 			console.error "Could not open file: %s", error
 			process.exit 1 
-		res.send data.toString("utf-8")
+		movieMap = JSON.parse data.toString("utf-8")
+		res.render "movies", movieMap
 	)
 )
