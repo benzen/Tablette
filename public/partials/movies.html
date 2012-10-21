@@ -1,4 +1,16 @@
-<div ng-repeat="(name, description) in movies">
-	<strong>{{name}}</strong>
-	Support:{{description.location}}
+<div ng-repeat="movie in movies | orderBy:Title">
+	<strong>{{movie.Title}}</strong>  <a ng-href="/movie/{{movie.Title}}/edit" >Editer</a> <br>
+	<img ng-show="movie.Poster" ng-src="{{movie.Poster}}" style="float:right; height:300px;">
+	Support:{{movie.location}}<br>
+    Cote: {{movie.Rated}}<br>
+    Sortie: {{movie.Released}}<br>
+    Durée: {{movie.Runtime}}<br>
+    Genre: {{movie.Genre}}<br>
+    Director: {{movie.Director}}<br>
+    Scénariste: {{movie.Writer}}<br>
+    Acteurs: {{movie.Actors}}<br>
+    Synopsis: {{movie.Plot }}<br>
+    Note: {{movie.imdbRating}}<br>
+    Votes: {{movie.imdbVotes}}<br>
+    Lien IMDB {{movie.imdbID}}
 </div>

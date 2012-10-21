@@ -16,4 +16,6 @@
   Réalisateur:{{movie.Director}}<br>
   Acteurs: {{movie.Actors}}<br>
   Synopsis: {{movie.Plot}}<br>  
+  <select ng-model="movie.location" ng-options="location for location in locations" >
+  <input type="submit" ng-click="addToList()" value="Ajouter à la liste">
 </div>
