@@ -1,3 +1,2 @@
 require("coffee-script");
-
-require("./server/routes");
+require("./server/modules/server");

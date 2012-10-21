@@ -1,0 +1,19 @@
+<form ng-submit="searchMovieByName()">
+  Nom du film 
+  <input type="text" ng-model="movieName"/>
+  <input type="submit" value="Rechercher"/>
+</form>
+<div ng-show="movie">
+  <strong>
+    {{movie.Title}}
+  </strong><br>
+  <img src="{{movie.Poster}}" style="float:right">
+  Durée: {{movie.Runtime}}<br>
+  Genre: {{movie.Genre}}<br>
+  Date de sortie: {{movie.Released}}
+  Cote: {{movie.Rated}} Note: {{movie.imdbRating}} Vote {{movie.imdbVotes}}
+  Scénaristes:{{movie.Writer}}<br>
+  Réalisateur:{{movie.Director}}<br>
+  Acteurs: {{movie.Actors}}<br>
+  Synopsis: {{movie.Plot}}<br>  
+</div>

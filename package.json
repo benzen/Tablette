@@ -1,14 +1,11 @@
 {
-  "name": "simple-ant-js",
+  "name": "nove-movie-list",
   "version": "0.0.1",
    "dependencies": {
-    "express": "2.4.5",
-    "coffee-script":"1.2.0",
-    "jade":"0.22.1",
-    "socket.io": "0.9.6"
+    "express": "3.0.0rc5 ",
+    "coffee-script":"1.3.3"
   },
   "engines": {
-    "node": "0.4.7",
-    "npm":  "1.0.x"
+    "node": "0.8.12"
   }
 }
