@@ -1,0 +1,8 @@
+.shadow-box {
+  border: solid 1px;
+  margin: 20px;
+  padding: 10px;
+  border-color: #CCCCCC;
+  border-radius: 10px;
+  box-shadow: 0 0 1em;	
+}
