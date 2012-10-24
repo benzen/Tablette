@@ -1,7 +1,6 @@
 <form ng-submit="searchMovieByName()">
-  Nom du film 
-  <input type="text" ng-model="movieName"/>
-  <input type="submit" value="Rechercher"/>
+  <input type="text" ng-model="movieName" class="search-query" place/>
+  <input type="submit" class="btn btn-primary" value="Rechercher" placeholder="Titre du film"/>
 </form>
 <div ng-show="movie">
   <img src="{{movie.Poster}}" class="pull-right">
@@ -21,7 +20,7 @@
   
   <form ng-submit="addToList()">
     <select ng-model="movie.location" ng-options="location for location in locations" >
-    <input type="submit" value="Ajouter à la liste">
+    <input type="submit" value="Ajouter à la liste" class="btn btn-primary"/>
   </form>
 
 </div>
