@@ -1,23 +1,32 @@
 'use strict';
 
-function NewMovieCtrl( $scope, $http, $location ){
+function SearchMovieCtrl($scope, $http){
   $scope.movieName="";
-  $scope.locations=["dvd", "disque-dur"];
-  $scope.movie = null;
   $scope.searchMovieByName=function(){
     $http.get("/movie/search/"+$scope.movieName).
-    success(function(movie){
-      $scope.movie = movie;
+    success(function(movies){
+      $scope.movies = movies;
     });
   };
+};
+SearchMovieCtrl.$inject = ["$scope","$http", "$location"];
+
+function AddMovieCtrl( $scope, $http, $location, $routeParams ){
+  
+  $scope.locations=["dvd", "disque-dur"];
+  $scope.movie = null;
+  $http.get("/movie/"+$routeParams.movie_id).success(function(movie){
+    $scope.movie = movie;
+  })
+  
   $scope.addToList=function(){
     var movie = $scope.movie;
     $http.post("/movies/new", $scope.movie).success(function(){
-      $location.path( "/movies#" + movie.name );
+      $location.path( "#/movies#" + movie.name );
     });
   }
 };
-NewMovieCtrl.$inject = ["$scope","$http", "$location"];
+AddMovieCtrl.$inject = ["$scope","$http", "$location", "$routeParams"];
 
 function MoviesCtrl( $scope, $http ){
   $scope.movies;

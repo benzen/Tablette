@@ -1,25 +1,37 @@
-<form ng-submit="searchMovieByName()">
-  <input type="text" ng-model="movieName" class="search-query" placeholder="Titre du film"/>
-  <input type="submit" class="btn btn-primary" value="Rechercher" />
-</form>
 <div ng-show="movie">
-  <img src="{{movie.Poster}}" style="height:300px;" class="pull-right img-rounded">
+  <img ng-src="{{movie.poster}}" style="height:300px;" class="pull-right img-rounded">
 
-  <strong>
-    {{movie.Title}}
-  </strong><br>
+  <strong> 
+    {{movie.title}} 
+  </strong> 
+  ( {{movie.original_title}} ) 
+  <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}"> 
+    IMDB
+  </a><br>
+
+  Durée: {{movie.runtime}} min.  
+  Date de sortie: {{movie.release_date}} 
+  Note: {{movie.vote_average}} 
+  Vote {{movie.vote_count}} <br>
+  Genre: 
+    <i ng-repeat="genre in movie.genres"> 
+      {{genre.name}} 
+    </i><br>
   
-  Support:{{movie.location}} <br>
-  Durée: {{movie.Runtime}}<br>
-  Genre: {{movie.Genre}}<br>
-  Date de sortie: {{movie.Released}}
-  Scénaristes:{{movie.Writer}}<br>
-  Réalisateur:{{movie.Director}}<br>
-  Acteurs: {{movie.Actors}}<br>
-  Note: {{movie.imdbRating}} Vote {{movie.imdbVotes}} <br>
-  Cote: {{movie.Rated}} <br>
-  Synopsis: {{movie.Plot}}<br>
-  Lien IMDB <a ng-href="http://www.imdb.com/title/{{movie.imdbID}}"> IMDB </a>
+  Scénaristes: 
+    <i ng-repeat="crew_member in movie.casts.crew|filter: {department:'Writing'}">
+      {{crew_member.name}}
+    </i><br>
+  Réalisateur:
+    <i ng-repeat="crew_member in movie.casts.crew|filter: {department:'Directing'}">
+      {{crew_member.name}}
+    </i><br>
+  Acteurs: 
+    <i ng-repeat="cast in movie.casts.cast |orderBy: 'order' |limitTo:3">
+      {{cast.name}} ( {{cast.character}} ) 
+    </i><br>
+  
+  Synopsis: {{movie.overview}}<br>
 
   
   <form ng-submit="addToList()">

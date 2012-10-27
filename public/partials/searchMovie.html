@@ -1,0 +1,13 @@
+<form ng-submit="searchMovieByName()">
+  <input type="text" ng-model="movieName" class="search-query" placeholder="Titre du film"/>
+  <input type="submit" class="btn btn-primary" value="Rechercher" />
+</form>
+<div ng-show="movies">
+  <div ng-repeat="movie in movies | orderBy:title" class="shadow-box row">
+    <a ng-href="#/movie/add/{{movie.id}}">{{movie.title}}</a>
+    ({{movie.original_title}})<br>
+    Date de sortie: {{movie.release_date}}
+    Note: {{movie.vote_average}} Vote {{movie.vote_count}} <br>
+    
+  </div>
+</div>

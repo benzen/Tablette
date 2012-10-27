@@ -23,8 +23,6 @@ exports.updateMovie= (request, response)->
   newMovies = movies.filter (m)-> 
     m.Title != movie.Title  
   # add new one
-  console.log("movie"+ JSON.stringify(movie))
-  console.log("movie"+ JSON.stringify(newMovies))
   newMovies.push(movie)
   #update
   fs.writeFileSync( file, JSON.stringify( newMovies ) )
