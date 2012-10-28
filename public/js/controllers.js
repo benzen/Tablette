@@ -39,8 +39,8 @@ MoviesCtrl.$inject = ["$scope","$http"];
 
 function EditMovieCtrl($scope, $http, $routeParams, $location){
   $scope.locations=["dvd", "disque-dur"];
-  $scope.movie={};
-  var url = "/movie/"+$routeParams.movieName;
+  $scope.movie=null;
+  var url = "/movies/"+$routeParams.movie_id;
   $http.get( url ).success(function(movie){
     $scope.movie= movie   
   });

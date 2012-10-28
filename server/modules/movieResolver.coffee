@@ -34,7 +34,6 @@ http.get(options("/3/configuration?api_key=#{api_key}"), (response)->
     body+=chunk
   )
   response.on("end",()->
-    console.log("body #{body}")
     data = JSON.parse( body )
     imageConfig = "#{data.images.base_url}w342"
   )

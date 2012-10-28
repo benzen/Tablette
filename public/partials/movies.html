@@ -1,4 +1,4 @@
-<div ng-repeat="movie in movies | orderBy:movie.Title" class="shadow-box row" ng-show="movie">
+<div ng-repeat="movie in movies | orderBy:'title'" class="shadow-box row" ng-show="movie">
   <img ng-src="{{movie.poster}}" style="height:300px;" class="pull-right img-rounded">
 
   <strong> 
@@ -7,8 +7,10 @@
   ( {{movie.original_title}} ) 
   <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}"> 
     IMDB
-  </a><br>
-
+  </a>
+  <a ng-href="#/movie/{{movie.id}}/edit">Editer</a>
+  <br>
+  Support: {{movie.location}}<br>
   Durée: {{movie.runtime}} min.  
   Date de sortie: {{movie.release_date}} 
   Note: {{movie.vote_average}} 
