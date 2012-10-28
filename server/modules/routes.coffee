@@ -11,7 +11,7 @@ exports.setUpRoutes = (app)->
 
   app.get("/movies/:movie_id", movieList.getMovie )
   app.post( "/movies/new", movieList.addMovie )
-  app.put( "/movies/update", movieList.updateMovie )
+  app.put( "/movies/:movie_id", movieList.updateMovie )
 
   app.get( "/movie/:movieName", movieList.getMovie )
 

@@ -22,7 +22,7 @@ function AddMovieCtrl( $scope, $http, $location, $routeParams ){
   $scope.addToList=function(){
     var movie = $scope.movie;
     $http.post("/movies/new", $scope.movie).success(function(){
-      $location.path( "#/movies#" + movie.name );
+      $location.path( "/#/movies" );
     });
   }
 };
@@ -46,8 +46,8 @@ function EditMovieCtrl($scope, $http, $routeParams, $location){
   });
 
   $scope.updateMovie=function(){
-    $http.put("/movies/update", $scope.movie).success(function(){
-      $location.path("/movies#"+$routeParams.movieName);
+    $http.put("/movies/"+$routeParams.movie_id, $scope.movie).success(function(){
+      $location.path("/#/movies");
     });
   };
 

@@ -17,12 +17,13 @@ exports.addMovie=(request, response)->
 exports.updateMovie= (request, response)->
   moviesAsString = fs.readFileSync( file, "utf-8" )
   movies = JSON.parse( moviesAsString )
-  movie = request.body
+  newMovie = request.body
+  movie_id = parseInt( request.params.movie_id )
   # remove old version of the movie
-  newMovies = movies.filter (m)-> 
-    m.id != movie.id
-  # add new one
-  newMovies.push(movie)
+  newMovies = movies.map ( movie )-> 
+    if( movie.id == movie_id)
+      return newMovie
+    return movie
   #update
   fs.writeFileSync( file, JSON.stringify( newMovies ) )
   response.send("")  
