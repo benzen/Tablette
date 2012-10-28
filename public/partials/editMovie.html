@@ -4,7 +4,7 @@
   <strong> 
     {{movie.title}} 
   </strong> 
-  ( {{movie.original_title}} ) 
+  <i ng-show="movie.title != movie.original_title">({{movie.original_title}}) </i>
   <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}"> 
     IMDB
   </a><br>
