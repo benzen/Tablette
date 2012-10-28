@@ -41,7 +41,7 @@ http.get(options("/3/configuration?api_key=#{api_key}"), (response)->
 
 #the movie db
 exports.getMovieDescription = ( request, response ) ->
-  movie_id = request.params.movieId
+  movie_id = request.params.movie_id
   queryObject = 
     api_key: api_key
     language: language
