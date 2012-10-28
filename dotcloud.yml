@@ -1,0 +1,12 @@
+www:
+  type: nodejs
+  approot: .
+  config:
+    node_version: v0.8.x
+  environment:
+    DB_NAME: moviedb
+    DB_USER: movieFan
+    DB_USER_PASSWORD: matrix
+    DB_URL: pgsql://root:kGIkSs71scMS3tUZf1oo@nodemovielist-benzen.dotcloud.com:21232
+data:
+  type: postgresql
