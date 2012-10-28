@@ -25,3 +25,7 @@ input[type="color"],
 .uneditable-input {
   margin: 5px;
 }
+.nav-list {
+	height: 100%;
+	position: fixed;
+}

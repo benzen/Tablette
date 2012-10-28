@@ -30,9 +30,9 @@ exports.updateMovie= (request, response)->
 
 exports.getMovie = (request, response)->
   moviesAsString = fs.readFileSync( file, "utf-8" )
-  movie_id = parseInt(request.params.movie_id)
+  movie_id = parseInt( request.params.movie_id )
   movies = JSON.parse( moviesAsString )
-  requestedMovie = movies.filter( (movie) -> 
+  requestedMovie = movies.filter( ( movie ) -> 
     movie.id == movie_id
   ) 
   response.json requestedMovie[0]
