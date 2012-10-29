@@ -3,9 +3,7 @@ movieResolver = require "./movieResolver"
 
 exports.setUpRoutes = (app)->
 
-  app.get("/movies", (request,response)->
-    response.json movieList.getMovieList()
-  )
+  app.get("/movies", movieList.getMovieList )
   app.get("/movie/search/:query", movieResolver.searchMovie )
   app.get("/movie/:movie_id", movieResolver.getMovieDescription )
 

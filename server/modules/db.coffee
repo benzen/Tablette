@@ -1,21 +1,23 @@
 pg = require "pg"
 
-dbUrl = ""
+db_url = "pgsql://moviefan:matrix@nodemovielist-benzen.azva.dotcloud.net:39961/"
+db_name = "movies"
+client = new pg.Client( "#{db_url}#{db_name}" )
+client.connect()
 
-var client = new pg.Client( dbUrl );
-client.connect();
+ifTableAlreadyExistLogAMessage = (tableName)->
+  ()->
+    console.info("Database Table " + tableName + " already exist")
 
-var ifTableAlreadyExistLogAMessage = function(tableName){
-  return function(){ console.info("Database Table " + tableName + " already exist") };
-};
-var ifTableWasCreatedLogAMessage = function(tableName){
-  return function(){ console.info("Database Table " + tableName + " was exist") };
-};
-var createTable = function(query, tableName){
-  var query = client.query( query );
-  query.on("error", ifTableAlreadyExistLogAMessage(tableName));
-}
+ifTableWasCreatedLogAMessage = (tableName)->
+  ()->
+    console.info("Database Table " + tableName + " was exist")
 
-createTable( "CREATE TABLE \"movie\" (id SERIAL PRIMARY KEY, description json);","movie" );
+createTable = (query, tableName)->
+  query = client.query( query )
+  query.on("error", ifTableAlreadyExistLogAMessage(tableName))
 
-exports.db = client;
+
+createTable( "CREATE TABLE movie (id SERIAL PRIMARY KEY, description text);","movie" )
+
+exports.db = client

@@ -1,6 +1,6 @@
 express = require 'express'
 router = require "./routes"
-
+db = require "./db"
 app = express()
 
 app.configure( ()->
@@ -19,4 +19,6 @@ port = 8080;
 app.listen(port, ()->
   console.log("Listening on " + port)
 )
+
+
 
