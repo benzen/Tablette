@@ -1,7 +1,7 @@
 pg = require "pg"
 
-db_url = "pgsql://moviefan:matrix@nodemovielist-benzen.azva.dotcloud.net:39961/"
-db_name = "movies"
+db_url = "pgsql://tablette:tablette@tablette-benzen.azva.dotcloud.net:39960"
+db_name = "tablette"
 client = new pg.Client( "#{db_url}#{db_name}" )
 client.connect()
 
