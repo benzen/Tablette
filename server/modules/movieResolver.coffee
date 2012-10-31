@@ -1,20 +1,6 @@
 http = require "http"
 querystring = require "querystring"
 
-# omdb 
-#
-#exports.getMovieDescription = (request, response) ->
-#  url= "http://www.omdbapi.com/?i=&t=#{request.params.movieName}"
-#  http.get( url, ( getResponse ) ->
-#    body = ""
-#    getResponse.on("data",(chunk)->
-#      body += chunk
-#    )
-#    getResponse.on(  "end",  ( )->
-#      response.send( body )
-#    )
-#  )
-
 api_key = "449cc224819fdfd8074ee222004d8692"
 api_url = "api.themoviedb.org"
 #api_url = "private-f1e6-themoviedb.apiary.io"

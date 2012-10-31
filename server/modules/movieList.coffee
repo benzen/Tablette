@@ -38,4 +38,9 @@ exports.getMovie = (request, response)->
   query.on("row",(row)->
     response.json JSON.parse( row.description ) 
   )
-  
+###  
+moviesAsString = fs.readFileSync( file, "utf-8" )
+movies = JSON.parse( moviesAsString )
+for movie in movies
+  query = db.query("INSERT INTO movie VALUES( $1, $2 )", [ movie.id, JSON.stringify(movie) ] )
+###
