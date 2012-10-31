@@ -1,8 +1,12 @@
 pg = require "pg"
 
-db_url = "pgsql://tablette:tablette@tablette-benzen.azva.dotcloud.net:39960"
-db_name = "tablette"
-client = new pg.Client( "#{db_url}#{db_name}" )
+db_host = "tablette-benzen.azva.dotcloud.net"
+db_port = "39960"
+db_user = "tablette"
+db_password = "etagere"
+db_name = "tablettedb"
+db_url = "pgsql://#{db_user}:#{db_password}@#{db_host}:#{db_port}/#{db_name}"
+client = new pg.Client( db_url )
 client.connect()
 
 ifTableAlreadyExistLogAMessage = (tableName)->
@@ -10,8 +14,9 @@ ifTableAlreadyExistLogAMessage = (tableName)->
     console.info("Database Table " + tableName + " already exist")
 
 ifTableWasCreatedLogAMessage = (tableName)->
-  ()->
+  (e)->
     console.info("Database Table " + tableName + " was exist")
+    console.log(e)
 
 createTable = (query, tableName)->
   query = client.query( query )
