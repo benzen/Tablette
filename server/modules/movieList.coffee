@@ -4,15 +4,16 @@ db = require( "./db" ).db
 file = "movies.json"
 
 exports.getMovieList = ( request, response ) ->
-#  movies = fs.readFileSync( file, "utf-8" )
-#  JSON.parse( movies )
-  movies =[]
   query = db.query("select * from movie;")
+  movies = [];
+  
   query.on("row",(row)->
-    movies.push JSON.parse( row.description )
+    movies.push( row.description )
   )
+
   query.on("end",()->
-    response.json movies
+    json = "[#{movies.join(',')}]"
+    response.send json
   )
   
 

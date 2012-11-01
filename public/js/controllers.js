@@ -30,8 +30,7 @@ AddMovieCtrl.$inject = ["$scope","$http", "$location", "$routeParams"];
 
 function MoviesCtrl( $scope, $http ){
   $scope.movies;
-  $http.get("/movies/").
-  success(function( movies ){
+  $http.get("/movies/").success(function( movies ){
       $scope.movies = movies;
   });
 };
