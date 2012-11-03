@@ -28,13 +28,40 @@ function AddMovieCtrl( $scope, $http, $location, $routeParams ){
 };
 AddMovieCtrl.$inject = ["$scope","$http", "$location", "$routeParams"];
 
-function MoviesCtrl( $scope, $http ){
-  $scope.movies;
-  $http.get("/movies/").success(function( movies ){
-      $scope.movies = movies;
-  });
+function MoviesCtrl( $scope, $moviesStream ){
+  $scope.movies=[];
+  var movieListBuffer = [];
+  var chunkSize = 50;
+
+  $moviesStream.addEventListener("movie",function(e){
+    var movie = JSON.parse( e.data );
+    movieListBuffer.push(movie);
+    if(movieListBuffer.length > chunkSize){
+      flushBuffer();
+    }
+    
+  },true);
+
+  $moviesStream.addEventListener("end", function(){
+    $moviesStream.close();
+    flushBuffer();
+  },true);
+
+  $moviesStream.addEventListener("error", function(){
+    $moviesStream.close();
+  },true);
+
+  var flushBuffer = function(){
+    $scope.$apply(function(){
+      movieListBuffer.forEach(function(movie){
+        $scope.movies.push(movie);
+      });
+      movieListBuffer = [];
+    });
+  }
+
 };
-MoviesCtrl.$inject = ["$scope","$http"];
+MoviesCtrl.$inject = [ "$scope", "$moviesStream" ];
 
 function EditMovieCtrl($scope, $http, $routeParams, $location){
   $scope.locations=["dvd", "disque-dur"];

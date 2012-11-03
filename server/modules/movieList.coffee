@@ -4,18 +4,25 @@ db = require( "./db" ).db
 file = "movies.json"
 
 exports.getMovieList = ( request, response ) ->
+  createEvent= ( eventType, eventData ) ->
+    "event:#{eventType}\ndata:#{eventData}\n\n"
+  response.writeHead( 200, { 
+    "Content-Type":"text/event-stream",
+    'Cache-Control': 'no-cache',
+    'Connection': 'keep-alive'
+  } );
+  response.write("");
   query = db.query("select * from movie;")
-  movies = [];
+
   
   query.on("row",(row)->
-    movies.push( row.description )
+    response.write( createEvent( "movie", row.description ) );
   )
 
   query.on("end",()->
-    json = "[#{movies.join(',')}]"
-    response.send json
+    response.write( createEvent("end","") );
+    response.end();
   )
-  
 
 exports.addMovie=(request, response)->
   movie = request.body
