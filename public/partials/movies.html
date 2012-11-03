@@ -1,4 +1,4 @@
-<div ng-repeat="movie in movies | orderBy:'title'" class="shadow-box row" ng-show="movie">
+<div ng-repeat="movie in movies| orderBy:'title'" class="shadow-box row" >
   <img ng-src="{{movie.poster}}" style="height:300px;" class="pull-right img-rounded">
 
   <h4> 
@@ -20,8 +20,8 @@
   <i ng-repeat="genre in movie.genres"> 
     {{genre.name}} 
   </i><br>
-  
-  <div ng-show="movie.casts.crew|filter: {department:'Writing'}">
+
+  <div ng-show="movie.casts.crew">
     <strong>Scénaristes</strong>:
     <ul>
       <li ng-repeat="crew_member in movie.casts.crew|filter: {department:'Writing'}">
@@ -29,8 +29,7 @@
       </li>
     </ul>
   </div>
-  
-  <div ng-show="movie.casts.crew|filter: {department:'Directing'}">
+  <div ng-show="movie.casts.crew">
     <strong>Réalisateur</strong>:
     <ul>
       <li ng-repeat="crew_member in movie.casts.crew|filter: {department:'Directing'}">
@@ -48,7 +47,7 @@
         </li>
       </ul>
   </div>
-  
+
   <div ng-show="movie.overview">
     <strong>Synopsis</strong>: {{movie.overview}}<br>
   </div>
