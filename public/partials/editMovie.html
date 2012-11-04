@@ -1,37 +1,54 @@
 <div ng-show="movie">
   <img ng-src="{{movie.poster}}" style="height:300px;" class="pull-right img-rounded">
 
-  <strong> 
-    {{movie.title}} 
-  </strong> 
-  <i ng-show="movie.title != movie.original_title">({{movie.original_title}}) </i>
-  <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}"> 
-    IMDB
-  </a><br>
+  <h4>
+    {{movie.title}} <i ng-show="movie.title != movie.original_title">({{movie.original_title}}) </i>
+  </h4>
 
-  Durée: {{movie.runtime}} min.  
-  Date de sortie: {{movie.release_date}} 
-  Note: {{movie.vote_average}} 
-  Vote {{movie.vote_count}} <br>
-  Genre: 
-    <i ng-repeat="genre in movie.genres"> 
-      {{genre.name}} 
-    </i><br>
-  
-  Scénaristes: 
-    <i ng-repeat="crew_member in movie.casts.crew|filter: {department:'Writing'}">
-      {{crew_member.name}}
-    </i><br>
-  Réalisateur:
-    <i ng-repeat="crew_member in movie.casts.crew|filter: {department:'Directing'}">
-      {{crew_member.name}}
-    </i><br>
-  Acteurs: 
-    <i ng-repeat="cast in movie.casts.cast |orderBy: 'order' |limitTo:3">
-      {{cast.name}} ( {{cast.character}} ) 
-    </i><br>
-  
-  Synopsis: {{movie.overview}}<br>
+  <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}">
+    IMDB
+  </a>
+  <br>
+
+  <strong>Durée</strong>: {{movie.runtime}} min.
+  <strong>Date de sortie</strong>: {{movie.release_date}}
+  <strong>Note</strong>: <span class="badge badge-info">{{movie.vote_average}}</span>
+  <strong>Vote</strong>: <span class="badge badge-inverse">{{movie.vote_count}}</span> <br>
+  <strong>Genre</strong>:
+  <i ng-repeat="genre in movie.genres">
+    {{genre.name}}
+  </i><br>
+
+  <div ng-show="movie.casts.crew">
+    <strong>Scénaristes</strong>:
+    <ul>
+      <li ng-repeat="crew_member in movie.casts.crew|filter: {department:'Writing'}">
+        {{crew_member.name}}
+      </li>
+    </ul>
+  </div>
+  <div ng-show="movie.casts.crew">
+    <strong>Réalisateur</strong>:
+    <ul>
+      <li ng-repeat="crew_member in movie.casts.crew|filter: {department:'Directing'}">
+        {{crew_member.name}}
+      </li>
+    </ul>
+  </div>
+
+
+  <div ng-show="movie.casts.cast">
+    <strong>Acteurs</strong>:
+      <ul>
+        <li ng-repeat="cast in movie.casts.cast |orderBy: 'order' |limitTo:3">
+          {{cast.name}} ({{cast.character}})
+        </li>
+      </ul>
+  </div>
+
+  <div ng-show="movie.overview">
+    <strong>Synopsis</strong>: {{movie.overview}}<br>
+  </div>
 
 <form ng-submit="updateMovie()">
   <select ng-model="movie.location" ng-options="location for location in locations" >

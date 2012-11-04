@@ -1,24 +1,24 @@
 <div ng-repeat="movie in movies| orderBy:'title'" class="shadow-box row" >
   <img ng-src="{{movie.poster}}" style="height:300px;" class="pull-right img-rounded">
 
-  <h4> 
+  <h4>
     {{movie.title}} <i ng-show="movie.title != movie.original_title">({{movie.original_title}}) </i>
-  </h4> 
+  </h4>
   <span class="label label-info">{{movie.location}}</span>
-  
-  <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}"> 
+
+  <a ng-href="http://www.imdb.com/title/{{movie.imdb_id}}">
     IMDB
   </a>
   <a ng-href="#/movie/{{movie.id}}/edit">Editer</a>
   <br>
-  
-  <strong>Durée</strong>: {{movie.runtime}} min.  
-  <strong>Date de sortie</strong>: {{movie.release_date}} 
+
+  <strong>Durée</strong>: {{movie.runtime}} min.
+  <strong>Date de sortie</strong>: {{movie.release_date}}
   <strong>Note</strong>: <span class="badge badge-info">{{movie.vote_average}}</span>
   <strong>Vote</strong>: <span class="badge badge-inverse">{{movie.vote_count}}</span> <br>
-  <strong>Genre</strong>: 
-  <i ng-repeat="genre in movie.genres"> 
-    {{genre.name}} 
+  <strong>Genre</strong>:
+  <i ng-repeat="genre in movie.genres">
+    {{genre.name}}
   </i><br>
 
   <div ng-show="movie.casts.crew">
@@ -34,7 +34,7 @@
     <ul>
       <li ng-repeat="crew_member in movie.casts.crew|filter: {department:'Directing'}">
         {{crew_member.name}}
-      </li>  
+      </li>
     </ul>
   </div>
 
@@ -43,7 +43,7 @@
     <strong>Acteurs</strong>:
       <ul>
         <li ng-repeat="cast in movie.casts.cast |orderBy: 'order' |limitTo:3">
-          {{cast.name}} ({{cast.character}}) 
+          {{cast.name}} ({{cast.character}})
         </li>
       </ul>
   </div>
@@ -51,6 +51,6 @@
   <div ng-show="movie.overview">
     <strong>Synopsis</strong>: {{movie.overview}}<br>
   </div>
-  
+
 
 </div>
