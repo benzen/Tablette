@@ -16,12 +16,12 @@ options = ( url )->
 
 imageConfig=""
 http.get(options("/3/configuration?api_key=#{properties.api_key}"), (response)->
-  body=""
+  body=[]
   response.on("data",(chunk)->
-    body+=chunk
+    body.push chunk
   )
   response.on("end",()->
-    data = JSON.parse( body )
+    data = JSON.parse( body.join("") )
     imageConfig = "#{data.images.base_url}w342"
   )
 )
@@ -37,12 +37,12 @@ exports.getMovieDescription = ( request, response ) ->
 
   url = "/3/movie/#{movie_id}?#{qs}"
   http.get( options(url), (getResponse)->
-    body = ""
+    body = []
     getResponse.on("data",(chunk)->
-      body += chunk
+      body.push chunk
     )
     getResponse.on(  "end",  ( )->
-      movie = JSON.parse(body)
+      movie = JSON.parse(body.join(""))
       movie.poster = "#{imageConfig}/#{movie.poster_path}"
       response.json( movie )
     )
@@ -58,13 +58,13 @@ exports.searchMovie = (request, response)->
   qs = querystring.stringify(queryObject)
   url = "/3/search/movie?#{qs}"
   site= http.get( options(url), ( getResponse )->
-    body = ""
+    body = []
     getResponse.on("data",(chunk)->
-      body += chunk
+      body.push chunk
     )
     getResponse.on(  "end",  ( )->
       if(body)
-        data = JSON.parse( body )
+        data = JSON.parse( body.join("") )
         if(data.total_pages > 1)
           console.log "There is more than on page of result"
         movies = data.results.map( (movie)->
