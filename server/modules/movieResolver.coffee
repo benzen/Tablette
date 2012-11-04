@@ -1,12 +1,13 @@
 http = require "http"
 querystring = require "querystring"
+properties = require("nropf").use(__dirname+"/../app.properties")
 
-api_key = "449cc224819fdfd8074ee222004d8692"
-api_url = "api.themoviedb.org"
-#api_url = "private-f1e6-themoviedb.apiary.io"
-language = "fr"
+api_key = properties.api_key
+api_url = properties.api_url
+language = properties.language
+
 options = ( url )->
-  option = 
+  option =
     hostname: api_url
     headers: { "accept":"application/json" }
     path: url
@@ -14,7 +15,7 @@ options = ( url )->
   option
 
 imageConfig=""
-http.get(options("/3/configuration?api_key=#{api_key}"), (response)->
+http.get(options("/3/configuration?api_key=#{properties.api_key}"), (response)->
   body=""
   response.on("data",(chunk)->
     body+=chunk
@@ -28,8 +29,8 @@ http.get(options("/3/configuration?api_key=#{api_key}"), (response)->
 #the movie db
 exports.getMovieDescription = ( request, response ) ->
   movie_id = request.params.movie_id
-  queryObject = 
-    api_key: api_key
+  queryObject =
+    api_key: properties.api_key
     language: language
     append_to_response: "casts"
   qs = querystring.stringify(queryObject)
@@ -49,9 +50,9 @@ exports.getMovieDescription = ( request, response ) ->
 
 exports.searchMovie = (request, response)->
   query = request.params.query
-  
-  queryObject = 
-    api_key: api_key
+
+  queryObject =
+    api_key: properties.api_key
     query: query
     language: language
   qs = querystring.stringify(queryObject)
@@ -64,7 +65,7 @@ exports.searchMovie = (request, response)->
     getResponse.on(  "end",  ( )->
       if(body)
         data = JSON.parse( body )
-        if(data.total_pages > 1) 
+        if(data.total_pages > 1)
           console.log "There is more than on page of result"
         movies = data.results.map( (movie)->
           movie.poster = "#{imageConfig}/#{movie.poster_path}"

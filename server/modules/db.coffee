@@ -1,11 +1,8 @@
 pg = require "pg"
+properties = require("nropf").use( __dirname + "/../app.properties")
 
-db_host = "tablette-benzen.azva.dotcloud.net"
-db_port = "39960"
-db_user = "tablette"
-db_password = "etagere"
-db_name = "tablettedb"
-db_url = "pgsql://#{db_user}:#{db_password}@#{db_host}:#{db_port}/#{db_name}"
+db_url = "pgsql://#{properties.db_user}:#{properties.db_password}@#{properties.db_host}:#{properties.db_port}/#{properties.db_name}"
+
 client = new pg.Client( db_url )
 client.connect()
 
