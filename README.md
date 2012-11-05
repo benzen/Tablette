@@ -1,4 +1,4 @@
-NodeMovieList
+Tablette
 =============
 
 A small application that could help you to build a list of all movies you own.
@@ -8,5 +8,5 @@ This application use nodejs, angular.js and twiter-bootstrap and some features o
 Movie information source
 ========================
 
-For fetching informations abut movie, this application use themoviedb.org
+For fetching informations about movie, this application use themoviedb.org
 This site offer a rest API.
