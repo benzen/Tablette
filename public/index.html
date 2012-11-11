@@ -15,21 +15,26 @@
 
 
   </head>
-  <body ng-app="nodemovielist" class="container">
-    <ul class="nav nav-list well span2">
-      <li class="nav-header">
-        Ajouter un film
-      </li>
-      <li>
-        <a href="#/movie/search">Par nom</a>
-      </li>
-      <li class="nav-header">
-        Voir la liste
-      </li>
-      <li>
-        <a href="#/movies">Liste complète</a>
-      </li>
-    </ul>
-    <div ng-view ng-cloak class="span10 offset2"/>
+  <body ng-app="nodemovielist" class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <ul class="nav nav-list well">
+          <li class="nav-header">
+            Ajouter un film
+          </li>
+          <li>
+            <a href="#/movie/search">Par nom</a>
+          </li>
+          <li class="nav-header">
+            Voir la liste
+          </li>
+          <li>
+            <a href="#/movies">Liste complète</a>
+          </li>
+        </ul>
+      </div>
+
+      <div ng-view ng-cloak class="span10"/>
+    </div>
   </body>
- </html> 
+ </html>
